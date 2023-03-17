@@ -81,6 +81,7 @@ public class CameraControler : MonoBehaviour
     private void Interact()
     {
         Vector2 worldPos = _camera.ScreenToWorldPoint(mousePos);
+        Debug.Log(worldPos);
 
         RaycastHit2D hit = Physics2D.Raycast(worldPos,Vector2.zero);
 
@@ -90,6 +91,11 @@ public class CameraControler : MonoBehaviour
 
             selectedUnit = hit.transform.GetComponent<Unit>();
             selectedUnit.Selected = true;
+        }
+        else
+        {
+            selectedUnit = null;
+            Ui_Manager.Instance.UnitDeselected();
         }
     }
 
